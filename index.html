@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/webstorm-icon-logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WS playground</title>
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+      main {
+          width: 50%; /* Adjust width */
+          margin: 50px auto; /* Center it */
+          padding: 20px; /* Add some space inside */
+          border: 3px solid #444; /* Frame around it */
+          border-radius: 10px; /* Rounded corners */
+          box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+          text-align: center; /* Center text */
+          background: #f8f8f8; /* Light background */
+      }
+
+      h1.title {
+          font-size: 24px;
+          color: #333;
+      }
+
+      input {
+          padding: 10px;
+          font-size: 16px;
+          border: 2px solid #888;
+          border-radius: 5px;
+      }
+
+      button {
+          padding: 10px 15px;
+          font-size: 16px;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+      }
+
+      button:hover {
+          background-color: #0056b3;
+      }
+  </style>
+
+
+  <script>
+    var options = ["The Brotherhood", "The canteen", "The Party", "The Proles", "The Ruined Church (in the tower of which Winston & Juliet met)", "Winston", "Juliet", "The 60 year old man who slept with Juliet when she was 16", "The Anti Sex youth league", "Kathrine"];
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
+    function getRandomElement(array) {
+      return array[getRandomInt(array.length)];
+    }
+    var permission = 0;
+    function check() {
+      if (document.getElementById("password").value === "Big brother is watching you") {
+        document.getElementById("result").innerHTML = "Go ahead, comrade";
+        permission = 1;
+      } else {
+        document.getElementById("result").innerHTML = "Wrong password";
+      }
+    }
+    //return random value from options
+    function choose(){
+      if (permission === 1) {
+        document.getElementById('result').innerHTML = getRandomElement(options);
+      }
+      else {
+        document.getElementById('result').innerHTML = "Password first";
+      }
+    }
+  </script>
+</head>
+<body>
+
+<main id="app">
+  <h1 class="title">
+    Website ahh thing
+  </h1>
+
+  <form onsubmit="event.preventDefault();return false">
+    <input type="text" id="password" placeholder="Enter your password"/>
+    <button id="submit" onclick="check();">Submit</button>
+  </form>
+  <button id="choose" onclick="choose();">Choose</button>
+  <h1 id="result"></h1>
+
+</main>
+<footer class="technologies">
+  <img src="/technologies.svg" alt="List of supported technologies">
+</footer>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
